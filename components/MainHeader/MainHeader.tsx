@@ -19,6 +19,7 @@ interface LinkItem {
 
 const links: LinkItem[] = [
     { link: '/news', label: 'News' },
+    {link: '/archive', label: 'Archive'},
 ];
 
 export default function MainHeader() {
