@@ -1,6 +1,6 @@
 import NewsList from "@/components/News/NewsList";
 import {
-    getAvailableNewsMonths, getAvailableNewsMonthsNumber,
+    getAvailableNewsMonthsNumber,
     getAvailableNewsMonthsTuple,
     getAvailableNewsYears,
     getNewsByMonthAndYear,

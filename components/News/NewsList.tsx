@@ -1,7 +1,7 @@
 import {MockData} from "@/assets/MockData";
 import {getFormattedDate} from "@/lib/utils/news";
 import {Card, Container, SimpleGrid, Text} from "@mantine/core";
-import classes from "@/app/news/page.module.css";
+import classes from "./NewList.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import {NewsItem} from "@/lib/types";
