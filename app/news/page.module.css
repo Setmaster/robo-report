@@ -1,0 +1,25 @@
+.card {
+    transition:
+            transform 150ms ease,
+            box-shadow 150ms ease;
+
+    &:hover {
+        transform: scale(1.01);
+        box-shadow: var(--mantine-shadow-md);
+    }
+}
+
+.title {
+    font-family: 'Greycliff CF', var(--mantine-font-family), serif;
+    font-weight: bold;
+}
+
+.container{
+    width: 90%;
+}
+
+.articleImage{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
