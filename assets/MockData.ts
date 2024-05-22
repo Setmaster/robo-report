@@ -25,7 +25,7 @@ export const MockData = [
         id: 'n3',
         title: 'Ethical Dilemmas: The Use of Robots in Policing',
         image: robotCopImg,
-        date: '2024-02-09',
+        date: '2023-02-09',
         slug: 'ethical-dilemmas-the-use-of-robots-in-policing',
         content: 'The deployment of robots in policing raises profound ethical questions about surveillance, force, and the role of AI in justice. As we integrate these machines into law enforcement, the balance between safety and civil liberties is tested. The use of robots could redefine policing strategies, but at what cost to privacy and human oversight?'
     },
@@ -33,7 +33,7 @@ export const MockData = [
         id: 'n4',
         title: 'Robot Surrogates for Humans: A New Era of Childbirth?',
         image: pregnantRobotImg,
-        date: '2024-01-17',
+        date: '2023-01-17',
         slug: 'robot-surrogates-for-humans-a-new-era-of-childbirth',
         content: 'With the advent of robot surrogates, the future of childbirth is poised to undergo a dramatic transformation. These robotic systems offer a groundbreaking solution for infertility and the risks associated with pregnancy and childbirth. As we move into 2024, the ethical and societal implications of robot-assisted childbirth spark a complex debate about the nature of parenthood and the role of technology in our lives.'
     },
@@ -41,8 +41,8 @@ export const MockData = [
         id: 'n5',
         title: 'The Future of Human Evolution: Brain Implants',
         image: brainImplantImg,
-        date: '2023-12-20',
+        date: '2022-12-20',
         slug: 'the-future-of-human-evolution-brain-implants',
-        content: 'Brain implants represent a significant leap towards merging human cognition with artificial intelligence. As we advance into 2024, the prospect of enhancing mental capabilities becomes not just a possibility but a reality. These implants could revolutionize treatments for neurological disorders and redefine the limits of human intelligence and memory.'
+        content: 'Brain implants represent a significant leap towards merging human cognition with artificial intelligence. As we advance into 2023, the prospect of enhancing mental capabilities becomes not just a possibility but a reality. These implants could revolutionize treatments for neurological disorders and redefine the limits of human intelligence and memory.'
     },
 ];

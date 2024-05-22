@@ -1,4 +1,4 @@
-import {MockData}  from "@/assets/MockData";
+import {MockData} from "@/assets/MockData";
 
 export function getFormattedDate(date: string): string {
     return new Date(date).toLocaleDateString("en-US", {
@@ -28,7 +28,7 @@ export function getAvailableNewsYears(){
 export function getAvailableNewsMonths(year: number): string[] {
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-    return MockData.filter(news => new Date(news.date).getFullYear() === year)
+    return MockData.filter(news => new Date(news.date).getFullYear() === +year)
         .reduce((months, news) => {
             const month = new Date(news.date).getMonth();
 
@@ -42,10 +42,36 @@ export function getAvailableNewsMonths(year: number): string[] {
         .map(monthIndex => monthNames[monthIndex]); // Convert month indices to month names
 }
 
+export function getAvailableNewsMonthsTuple(year: number): [number, string][] {
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    const numerical = MockData.filter(news => new Date(news.date).getFullYear() === +year)
+        .reduce((months, news) => {
+            const month = new Date(news.date).getMonth(); // getMonth() returns a 0-based index
+
+            if (!months.includes(month)) {
+                months.push(month);
+            }
+
+            return months;
+        }, [] as number[])
+        .sort((a, b) => a - b); // Ensure numerical sort
+
+    // Create tuples of [monthNumber, monthName]
+    return numerical.map(monthIndex => [monthIndex + 1, monthNames[monthIndex]]);
+}
+
 export function getNewsByYear(year: string){
     return MockData.filter(news => new Date(news.date).getFullYear() === +year);
 }
 
 export function getLatestNews(){
     return MockData.slice(0, 3);
+}
+
+export function getNewsByMonthAndYear(month: string, year: string){
+    return MockData.filter(news => {
+        const newsDate = new Date(news.date);
+        return newsDate.getFullYear() === +year && newsDate.getMonth() === +month - 1;
+    });
 }
