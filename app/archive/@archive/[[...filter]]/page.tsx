@@ -41,7 +41,7 @@ export default function FilteredNewsPage({params}: FilteredNewsPageParams) {
     }
     
     if(selectedYear && !getAvailableNewsYears().includes(+selectedYear) ||
-    selectedMonth && !getAvailableNewsMonthsNumber(selectedYear as string).includes(+selectedMonth+1)){
+    selectedMonth && !getAvailableNewsMonthsNumber(selectedYear as string).includes(+selectedMonth-1)){
         throw new Error('Invalid filter');
     }
     
