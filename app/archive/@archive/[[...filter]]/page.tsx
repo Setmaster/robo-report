@@ -1,5 +1,6 @@
 import NewsList from "@/components/News/NewsList";
 import {
+    getAvailableNewsMonths, getAvailableNewsMonthsNumber,
     getAvailableNewsMonthsTuple,
     getAvailableNewsYears,
     getNewsByMonthAndYear,
@@ -38,6 +39,12 @@ export default function FilteredNewsPage({params}: FilteredNewsPageParams) {
     if(news && news.length > 0){
         newsContent = <NewsList news={news}/>
     }
+    
+    if(selectedYear && !getAvailableNewsYears().includes(+selectedYear) ||
+    selectedMonth && !getAvailableNewsMonthsNumber(selectedYear as string).includes(+selectedMonth+1)){
+        throw new Error('Invalid filter');
+    }
+    
     if (selectedYear && newsContent === null){
         newsContent = <p>No news found for the selected time period.</p>
     }

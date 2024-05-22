@@ -25,7 +25,7 @@ export function getAvailableNewsYears(){
         .sort((a, b) => b - a); // Sorting the years in descending order before returning them
 }
 
-export function getAvailableNewsMonths(year: number): string[] {
+export function getAvailableNewsMonths(year: string): string[] {
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     return MockData.filter(news => new Date(news.date).getFullYear() === +year)
@@ -40,6 +40,20 @@ export function getAvailableNewsMonths(year: number): string[] {
         }, [] as number[])
         .sort((a, b) => a - b) // Ensure a numerical sort
         .map(monthIndex => monthNames[monthIndex]); // Convert month indices to month names
+}
+
+export function getAvailableNewsMonthsNumber(year: string): number[] {
+    return MockData.filter(news => new Date(news.date).getFullYear() === +year)
+        .reduce((months, news) => {
+            const month = new Date(news.date).getMonth(); // getMonth() returns a 0-based index
+
+            if (!months.includes(month)) {
+                months.push(month);
+            }
+
+            return months;
+        }, [] as number[])
+        .sort((a, b) => a - b); // Ensure numerical sort
 }
 
 export function getAvailableNewsMonthsTuple(year: string): [number, string][] {
