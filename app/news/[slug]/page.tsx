@@ -3,6 +3,7 @@ import Image from "next/image";
 import classes from "./page.module.css";
 import {notFound} from "next/navigation";
 import {getFormattedDate} from "@/lib/utils/news";
+import Link from "next/link";
 
 type DetailsPageProps = {
     params: {
@@ -26,7 +27,9 @@ export default function NewsDetailsPage({params}: DetailsPageProps){
                 <h1>{newsArticle.title}</h1>
                 <time dateTime={formattedDate}>{formattedDate}</time>
                 <div className={classes.imageContainer}>
-                <Image layout={"responsive"} src={newsArticle.image} alt={newsArticle.title} />
+                    <Link href={`/news/${newsArticle.slug}/image`}>
+                        <Image layout={"responsive"} src={newsArticle.image} alt={newsArticle.title} />
+                    </Link>
                 </div>
             </header>
             <p className={classes.content}>{newsArticle.content}</p>
