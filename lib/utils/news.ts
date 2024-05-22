@@ -42,7 +42,7 @@ export function getAvailableNewsMonths(year: number): string[] {
         .map(monthIndex => monthNames[monthIndex]); // Convert month indices to month names
 }
 
-export function getAvailableNewsMonthsTuple(year: number): [number, string][] {
+export function getAvailableNewsMonthsTuple(year: string): [number, string][] {
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     const numerical = MockData.filter(news => new Date(news.date).getFullYear() === +year)

@@ -1,8 +1,8 @@
 import NewsList from "@/components/News/NewsList";
 import {
-    getAvailableNewsMonths,
     getAvailableNewsMonthsTuple,
-    getAvailableNewsYears, getNewsByMonthAndYear,
+    getAvailableNewsYears,
+    getNewsByMonthAndYear,
     getNewsByYear
 } from "@/lib/utils/news";
 import Link from "next/link";
@@ -10,8 +10,10 @@ import Link from "next/link";
 type FilteredNewsPageParams = {
     params: {
         year: string;
+        filter?: string[];
     };
 }
+type LinkType = string | [number, string]| number;
 
 export default function FilteredNewsPage({params}: FilteredNewsPageParams) {
     const filter = params.filter;
@@ -19,11 +21,11 @@ export default function FilteredNewsPage({params}: FilteredNewsPageParams) {
     const selectedMonth = filter?.[1];
     
     let news;
-    let links = getAvailableNewsYears();
+    let links:LinkType[] = getAvailableNewsYears();
     
     if(selectedYear && !selectedMonth){
         news = getNewsByYear(selectedYear);
-        links = getAvailableNewsMonthsTuple(selectedYear);
+        links  = getAvailableNewsMonthsTuple(selectedYear);
     }
     
     if(selectedYear && selectedMonth){
@@ -41,18 +43,19 @@ export default function FilteredNewsPage({params}: FilteredNewsPageParams) {
     }
     
     const linksOutput = links.map(link => {
-        if(selectedYear){
-            const href = `/archive/${selectedYear}/${link[0]}`;
+        if(selectedYear && Array.isArray(link)){
+            const [monthNumber, monthName] = link;
+            const href = `/archive/${selectedYear}/${monthNumber}`;
             return (
-                <li key={link[0]}>
-                    <Link href={href}>{link[1]}</Link>
+                <li key={monthNumber}>
+                    <Link href={href}>{monthName}</Link>
                 </li>  
             );
         }
 
         const href = `/archive/${link}`;
         return (
-            <li key={link}>
+            <li key={String(link)}>
                 <Link href={href}>{link}</Link>
             </li>
         );
