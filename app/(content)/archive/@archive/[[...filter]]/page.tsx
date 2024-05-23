@@ -7,6 +7,7 @@ import {
     getNewsByYear
 } from "@/lib/utils/news";
 import Link from "next/link";
+import {type} from "node:os";
 
 type FilteredNewsPageParams = {
     params: {
@@ -16,13 +17,13 @@ type FilteredNewsPageParams = {
 }
 type LinkType = string | [number, string]| number;
 
-export default function FilteredNewsPage({params}: FilteredNewsPageParams) {
+export default async function FilteredNewsPage({params}: FilteredNewsPageParams) {
     const filter = params.filter;
     const selectedYear = filter?.[0];
     const selectedMonth = filter?.[1];
     
     let news;
-    let links:LinkType[] = getAvailableNewsYears();
+    let links:LinkType[] = await getAvailableNewsYears();
     
     if(selectedYear && !selectedMonth){
         news = getNewsByYear(selectedYear);
@@ -40,9 +41,15 @@ export default function FilteredNewsPage({params}: FilteredNewsPageParams) {
         newsContent = <NewsList news={news}/>
     }
     
-    if(selectedYear && !getAvailableNewsYears().includes(+selectedYear) ||
-    selectedMonth && !getAvailableNewsMonthsNumber(selectedYear as string).includes(+selectedMonth-1)){
-        throw new Error('Invalid filter');
+    const availableYears = await getAvailableNewsYears();
+    const availableMonths = getAvailableNewsMonthsNumber(selectedYear as string);
+    
+    if (selectedYear && !availableYears.includes(selectedYear)){
+        throw new Error('Invalid filter [Year]');
+    }
+    
+    if (selectedMonth && !availableMonths.includes(+selectedMonth)){
+        throw new Error('Invalid filter [Month]');
     }
     
     if (selectedYear && newsContent === null){
