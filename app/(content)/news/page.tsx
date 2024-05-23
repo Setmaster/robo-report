@@ -3,7 +3,7 @@ import {getAllNews} from "@/lib/utils/news";
 
 export default async function NewsPage() {
 
-    const news = getAllNews();
+    const news = await getAllNews();
 
     return <NewsList news={news}/>;
 }
