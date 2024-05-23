@@ -27,7 +27,7 @@ export default function NewsList({news} : NewsListProps){
                     className={classes.articleImage}
                     width={350}
                     height={350}
-                    src={article.image}
+                    src={`/images/${article.image}`}
                     alt={article.title}
                 />
                 <Text c="dimmed" size="xs" tt="uppercase" fw={700} mt="md">
