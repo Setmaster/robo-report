@@ -1,4 +1,14 @@
 import {MockData} from "@/assets/MockData";
+import sql from "better-sqlite3";
+
+const db = sql('data.db');
+
+export async function getAllNews(){
+    const news = db.prepare('SELECT * FROM news').all();
+    await new Promise(resolve => setTimeout(resolve, 1000)
+    return news;
+}
+
 
 export function getFormattedDate(date: string): string {
     return new Date(date).toLocaleDateString("en-US", {
